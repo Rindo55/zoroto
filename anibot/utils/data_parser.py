@@ -38,7 +38,7 @@ ANIME_TEMPLATE = """{name}
 🎬 {trailer_link}
 📖 <a href="{surl}">Synopsis</a>
 📖 <a href="{url}">More Info</a>
-<a href="https://t.me/{bot}?start=anirec_{idm}">Recommendations</a>
+<a href="https://t.me/{bot}?start=anirec_{idm}">Recommended for you</a>
 
 {additional}"""
 
@@ -826,9 +826,9 @@ async def get_recommendations(id_):
         rc_ls.append([ii['title']['romaji'], ii['id'], ii['siteUrl']])
     if rc_ls == []:
         return "No Recommendations available related to given anime!!!"
-    outstr = "Recommended animes:\n\n"
+    outstr = "Recommended anime for you:\n\n"
     for i in rc_ls:
-        outstr += f"**{i[0]}**\n ➥[Synopsis](https://t.me/{BOT_NAME.replace('@', '')}?start=anime_{i[1]})\n ➥[Official Site]({i[2]})\n\n"
+        outstr += f"**{i[0]}**\n ➥[Synopsis](https://t.me/{BOT_NAME.replace('@', '')}?start=anime_{i[1]})\n ➥[More Info]({i[2]})\n\n"
     return outstr
 
 
