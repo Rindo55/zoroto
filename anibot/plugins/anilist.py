@@ -90,7 +90,7 @@ async def anime_cmd(client: Client, message: Message, mdata: dict):
                     [
                         [
                             InlineKeyboardButton(
-                                text="Watch Online",
+                                text="📺Watch Online",
                                 url=zoro_url,
                             ),
                         ],
@@ -145,6 +145,64 @@ async def manga_cmd(client: Client, message: Message, mdata: dict):
         PIC_LS.append(pic)
     await asyncio.sleep(180)
     return await mangax.delete()
+
+@anibot.on_message(filters.command(["mangareader", f"mangareader{BOT_NAME}"], prefixes=trg))
+@control_user
+async def mangareader_cmd(client: Client, message: Message, mdata: dict):
+    """Search Manga Info"""
+    text = mdata['text'].split(" ", 1)
+    gid = mdata['chat']['id']
+    gidtype = mdata['chat']['type']
+    user = mdata['from_user']['id']
+    if gidtype in ["supergroup", "group"] and not await (GROUPS.find_one({"id": gid})):
+        try:
+            gidtitle = mdata['chat']['username']
+        except KeyError:
+            gidtitle = mdata['chat']['title']
+        await GROUPS.insert_one({"id": gid, "grp": gidtitle})
+        await clog("ANIBOT", f"Bot added to a new group\n\n{gidtitle}\nID: `{gid}`", "NEW_GROUP")
+    find_gc = await DC.find_one({'_id': gid})
+    if find_gc is not None and 'manga' in find_gc['cmd_list'].split():
+        return
+    if len(text)==1:
+        k = await message.reply_text("Please give a query to search about\nexample: /mangareader One Piece")
+        await asyncio.sleep(5)
+        return await k.delete()
+    query = text[1]
+    mangareader_query = text.replace(" ", "%20")
+    mangareader_url = f"https://zoro.to/search?keyword={mangareader_query}"
+    qdb = rand_key()
+    MANGA_DB[qdb] = query
+    auth = False
+    if (await AUTH_USERS.find_one({"id": user})):
+        auth = True
+    result = await get_manga(qdb, 1, auth=auth, user=user, cid=gid if gid!=user else None)
+    if len(result) == 1:
+        k = await message.reply_text(result[0])
+        await asyncio.sleep(5)
+        return await k.delete()
+    pic, finals_ = result[0], result[1][0]
+    buttons = get_btns("MANGA", lsqry=qdb, lspage=1, user=user, result=result, auth=auth)
+    if await (SFW_GRPS.find_one({"id": gid})) and result[2].pop()=="True":
+        buttons = get_btns("MANGA", lsqry=qdb, lspage=1, user=user, result=result, auth=auth, sfw="True")
+        await client.send_photo(gid, no_pic[random.randint(0, 4)], caption="This manga is marked 18+ and not allowed in this group", reply_markup=buttons)
+        return
+    mangar =await client.send_photo(gid, pic, caption=finals_,
+                   reply_markup=InlineKeyboardMarkup(         
+                    [
+                        [
+                            InlineKeyboardButton(
+                                text="📖Read Online",
+                                url=mangareader_url,
+                            ),
+                        ],
+                      ],
+                    ),
+                )                                    
+    if pic not in PIC_LS:
+        PIC_LS.append(pic)
+    await asyncio.sleep(180)
+    return await mangar.delete()
 
 @anibot.on_message(filters.command(["character", f"character{BOT_NAME}"], prefixes=trg))
 @control_user
