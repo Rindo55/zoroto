@@ -299,7 +299,7 @@ async def start_(client: anibot, message: Message, mdata: dict):
             text=f"""Yo! I stopped telling myself that I'm lost. I'm on a road with no destination. I'm just driving with hope that I'll find a place that I like & stay there. I'm not lost. I'm on my way. 
 
 I can help you get info on anime, mangas, characters, airing, schedules, Watch Orders of Animes, filler list etc
-For more info send /help here.
+For more info send /help.
 Currently serving at [Zoro Community](https://t.me/joinchat/Cd6xjR_S7wpkM2Rl).""", disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
                     [
@@ -375,7 +375,7 @@ Use /feedback cmd to contact bot owner'''
         await client.send_message(gid, text=text, reply_markup=buttons)
         await client.send_message(
             gid,
-            text="""Owners / Sudos can also use
+            text="""Owners or Sudos can also use
 
 - __/term__ `to run a cmd in terminal`
 - __/eval__ `to run a python code (code must start right after cmd like `__/eval print('UwU')__`)`
