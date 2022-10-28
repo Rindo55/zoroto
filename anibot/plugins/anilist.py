@@ -60,7 +60,7 @@ async def anime_cmd(client: Client, message: Message, mdata: dict):
     if find_gc is not None and 'anime' in find_gc['cmd_list'].split():
         return
     if len(text)==1:
-        k = await message.reply_text("Please give a query to search about\nexample: /anime Ao Haru Ride")
+        k = await message.reply_text("Please give a query to search about\nexample: `/anime One Piece`")
         await asyncio.sleep(5)
         return await k.delete()
     query = text[1]
@@ -150,7 +150,7 @@ async def character_cmd(client: Client, message: Message, mdata: dict):
     if find_gc is not None and 'character' in find_gc['cmd_list'].split():
         return
     if len(text)==1:
-        k = await message.reply_text("Please give a query to search about\nExample: /character Nami")
+        k = await message.reply_text("Please give a query to search about\nExample: `/character Nami`")
         await asyncio.sleep(5)
         return await k.delete()
     query = text[1]
@@ -887,7 +887,7 @@ async def additional_info_btn(client: Client, cq: CallbackQuery, cdata: dict):
         if kek == "desc"
         else "<b>Series List</b>"
         if kek == "ls"
-        else "<b>Characters List</b>"
+        else "<b> List</b>"
     )
     page = 0
     lsqry = f"_{q[3]}" if len(q) > 6 else ""
