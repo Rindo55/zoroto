@@ -296,10 +296,11 @@ async def start_(client: anibot, message: Message, mdata: dict):
                 return
         await client.send_message(
             gid,
-            text=f"""Kon'nichiwa!!!
-I'm {bot.first_name} bot and I can help you get info on Animes, Mangas, Characters, Airings, Schedules, Watch Orders of Animes, etc
-For more info send /help in here.
-If you wish to use me in a group start me by /start{BOT_NAME} command after adding me in the group."""
+            text=f"""Yo! I stopped telling myself that I'm lost. I'm on a road with no destination. I'm just driving with hope that I'll find a place that I like & stay there. I'm not lost. I'm on my way. 
+
+I can help you get info on anime, mangas, characters, airing, schedules, Watch Orders of Animes, filler list etc
+For more info send /help here.
+Currently serving at [Zoro Community](https://t.me/joinchat/Cd6xjR_S7wpkM2Rl)."""
         )
     else:
         if not await (GROUPS.find_one({"id": gid})):
