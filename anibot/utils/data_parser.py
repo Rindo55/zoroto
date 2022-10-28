@@ -18,7 +18,7 @@ async def uidata(id_):
     data = await GUI.find_one({'_id': str(id_)})
     if data is not None:
         return str(data['bl'])+" ", data['cs']
-    return ["➤ ", "UPPER"]
+    return ["⋟ ", "UPPER"]
 
 async def get_ui_text(case):
     if case=="UPPER":
@@ -30,15 +30,14 @@ async def get_ui_text(case):
 #### Anilist part ####
 
 ANIME_TEMPLATE = """{name}
-
-**ID | MAL ID:** `{idm}` | `{idmal}`
-{bl}**{psrc}:** `{source}`
-{bl}**{ptype}:** `{formats}`{avscd}{dura}{user_data}
+━━━━━━━━━━━━━━━━━━━━━━
+{bl}**{psrc}:** {source}
+{bl}**{ptype}:** {formats}{avscd}{dura}{user_data}
 {status_air}{gnrs_}{tags_}
 
 🎬 {trailer_link}
 📖 <a href="{surl}">Synopsis</a>
-📖 <a href="{url}">Official Site</a>
+📖 <a href="{url}">More Info</a>
 <a href="https://t.me/{bot}?start=anirec_{idm}">Recommendations</a>
 
 {additional}"""
@@ -996,15 +995,15 @@ async def get_anime(vars_, auth: bool = False, user: int = None, cid: int = None
     bl, cs = await uidata(cid)
     text = await get_ui_text(cs)
     psrc, ptype = text[0], text[1]
-    avscd = f"\n{bl}**{text[2]}:** `{score}%` 🌟" if score is not None else ""
+    avscd = f"\n{bl}**{text[2]}:**🌟{score}" if score is not None else ""
     tags = []
     for i in data['tags']:
         tags.append(i["name"])
-    tags_ = f"\n{bl}**{text[8]}:** `{', '.join(tags[:5])}`" if tags != [] else ""
+    tags_ = f"\n{bl}**{text[8]}:** {', '.join(tags[:5])}" if tags != [] else ""
     bot = BOT_NAME.replace("@", "")
     gnrs_ = ""
     if len(gnrs)!=0:
-        gnrs_ = f"\n{bl}**{text[7]}:** `{gnrs}`"
+        gnrs_ = f"\n{bl}**{text[7]}:** {gnrs}"
     isfav = data.get("isFavourite")
     fav = ", in Favourites" if isfav is True else ""
     user_data = ""
@@ -1049,7 +1048,7 @@ async def get_anime(vars_, auth: bool = False, user: int = None, cid: int = None
     additional = f"{prql}{sql}"
     surl = f"https://t.me/{bot}/?start=des_ANI_{idm}_desc"
     dura = (
-        f"\n{bl}**{text[3]}:** `{duration} min/ep`"
+        f"\n{bl}**{text[3]}:** {duration} mins/ep"
         if duration is not None
         else ""
     )
@@ -1059,12 +1058,12 @@ async def get_anime(vars_, auth: bool = False, user: int = None, cid: int = None
         air_on = make_it_rw(nextAir*1000)
         eps = data["nextAiringEpisode"]["episode"]
         th = pos_no(str(eps))
-        air_on += f" | {eps}{th} eps"
+        air_on += f" ({eps}{th} ep)"
     if air_on  is None:
-        eps_ = f"` | `{episodes} eps" if episodes is not None else ""
-        status_air = f"{bl}**{text[6]}:** `{status}{eps_}`"
+        eps_ = f"` | `{episodes} ep" if episodes is not None else ""
+        status_air = f"{bl}**{text[6]}:** {status}{eps_}"
     else:
-        status_air = f"{bl}**{text[6]}:** `{status}`\n{bl}**{text[11]}:** `{air_on}`"
+        status_air = f"{bl}**{text[6]}:** {status}\n{bl}**{text[11]}:** {air_on}"
     if data["trailer"] and data["trailer"]["site"] == "youtube":
         trailer_link = f"<a href='https://youtu.be/{data['trailer']['id']}'>Trailer</a>"
     title_img = f"https://img.anili.st/media/{idm}"
@@ -1108,14 +1107,14 @@ async def get_anilist(qdb, page, auth: bool = False, user: int = None, cid: int 
     text = await get_ui_text(cs)
     psrc, ptype = text[0], text[1]
     if len(gnrs)!=0:
-        gnrs_ = f"\n{bl}**{text[7]}:** `{gnrs}`"
+        gnrs_ = f"\n{bl}**{text[7]}:** {gnrs}"
     fav = ", in Favourites" if isfav is True else ""
     score = data['averageScore']
-    avscd = f"\n{bl}**{text[2]}:** `{score}%` 🌟" if score is not None else ""
+    avscd = f"\n{bl}**{text[2]}:** 🌟{score}" if score is not None else ""
     tags = []
     for i in data['tags']:
         tags.append(i["name"])
-    tags_ = f"\n{bl}**{text[8]}:** `{', '.join(tags[:5])}`" if tags != [] else ""
+    tags_ = f"\n{bl}**{text[8]}:** {', '.join(tags[:5])}" if tags != [] else ""
     in_ls = False
     in_ls_id = ""
     user_data = ""
@@ -1153,7 +1152,7 @@ async def get_anilist(qdb, page, auth: bool = False, user: int = None, cid: int 
     additional = f"{prql}{sql}"
     additional.replace("-", "")
     dura = (
-        f"\n{bl}**{text[3]}:** `{duration} min/ep`"
+        f"\n{bl}**{text[3]}:** `{duration} mins/ep`"
         if duration is not None
         else ""
     )
@@ -1163,12 +1162,12 @@ async def get_anilist(qdb, page, auth: bool = False, user: int = None, cid: int 
         air_on = make_it_rw(nextAir*1000)
         eps = data["nextAiringEpisode"]["episode"]
         th = pos_no(str(eps))
-        air_on += f" | {eps}{th} eps"
+        air_on += f" ({eps}{th} ep)"
     if air_on  is None:
-        eps_ = f"` | `{episodes} eps" if episodes is not None else ""
-        status_air = f"{bl}**{text[6]}:** `{status}{eps_}`"
+        eps_ = f"` | `{episodes} ep" if episodes is not None else ""
+        status_air = f"{bl}**{text[6]}:** {status}{eps_}"
     else:
-        status_air = f"{bl}**{text[6]}:** `{status}`\n{bl}**{text[11]}:** `{air_on}`"
+        status_air = f"{bl}**{text[6]}:** {status}\n{bl}**{text[11]}:** {air_on}"
     if data["trailer"] and data["trailer"]["site"] == "youtube":
         trailer_link = f"<a href='https://youtu.be/{data['trailer']['id']}'>Trailer</a>"
     url = data.get("siteUrl")
