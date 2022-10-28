@@ -1246,11 +1246,11 @@ async def get_manga(qdb, page, auth: bool = False, user: int = None, cid: int = 
     native = data["title"]["native"]
     status = data.get("status")
     synopsis = data.get("description")
-    description = synopsis[:500]
+    description = synopsis[:100]
     description_s = ""
-    if len(synopsis) > 500:
+    if len(synopsis) > 100:
         description += f"..."
-        description_s = f"[For more info click here](https://t.me/{BOT_NAME.replace('@', '')}/?start=des_ANI_{idm}_desc)"
+        description_s = f"[SYNOPSIS](https://t.me/{BOT_NAME.replace('@', '')}/?start=des_ANI_{idm}_desc)"
     volumes = data.get("volumes")
     chapters = data.get("chapters")
     score = data.get("averageScore")
@@ -1281,18 +1281,17 @@ async def get_manga(qdb, page, auth: bool = False, user: int = None, cid: int = 
     if english  is None:
         name = f"""[{c_flag}]**{romaji}**
         {native}"""
-    finals_ = f"{name}\n\n"
-    finals_ += f"{bl}**ID:** `{idm}`\n"
-    finals_ += f"{bl}**{text[6]}:** `{status}`\n"
-    finals_ += f"{bl}**{text[13]}:** `{volumes}`\n"
-    finals_ += f"{bl}**{text[14]}:** `{chapters}`\n"
-    finals_ += f"{bl}**{text[2]}:** `{score}`\n"
-    finals_ += f"{bl}**{text[1]}:** `{format_}`\n"
-    finals_ += f"{bl}**{text[0]}:** `{source}`\n"
+    finals_ = f"{name}\n━━━━━━━━━━━━━━━━━━━━━━"
+    finals_ += f"{bl}**{text[6]}:** {status}\n"
+    finals_ += f"{bl}**{text[13]}:** {volumes}\n"
+    finals_ += f"{bl}**{text[14]}:** {chapters}\n"
+    finals_ += f"{bl}**{text[2]}:** {score}\n"
+    finals_ += f"{bl}**{text[1]}:** {format_}\n"
+    finals_ += f"{bl}**{text[0]}:** {source}\n"
     finals_ += user_data
     if os.environ.get("PREFERRED_LANGUAGE"):
         description = tr.translate(description, lang_tgt=os.environ.get("PREFERRED_LANGUAGE"))
-    finals_ += f"\n**{text[12]}**: `{description}`\n\n{description_s}"
+    finals_ += f"\n\n**{description_s}**"
     pic = f"https://img.anili.st/media/{idm}"
     return pic, [finals_, result["data"]["Page"]["pageInfo"]["total"], url], [idm, in_ls, in_ls_id, isfav, str(adult)]
 
