@@ -87,7 +87,7 @@ async def anime_cmd(client: Client, message: Message, mdata: dict):
                         [
                             InlineKeyboardButton(
                                 text="Watch Online",
-                                url="https://Zoro.to",
+                                url="https://zoro.to/search?keyword={query}",
                             ),
                         ],
                       ],
