@@ -59,4 +59,6 @@ async def filler_btn(client: anibot, cq: CallbackQuery, cdata: dict):
     if result.get("ac_ep") is not None:
         msg += "\n\n**Anime Canon episodes:**\n"
         msg += str(result.get("ac_ep"))
-    await cq.edit_message_text(msg)
+    fillerx = await cq.edit_message_text(msg)
+        await asyncio.sleep(180)
+    return await fillerx.delete()
