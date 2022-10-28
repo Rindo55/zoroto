@@ -90,7 +90,7 @@ async def anime_cmd(client: Client, message: Message, mdata: dict):
                     [
                         [
                             InlineKeyboardButton(
-                                text="📺Watch Online",
+                                text="📺 Watch Online",
                                 url=zoro_url,
                             ),
                         ],
@@ -162,7 +162,7 @@ async def mangareader_cmd(client: Client, message: Message, mdata: dict):
         await GROUPS.insert_one({"id": gid, "grp": gidtitle})
         await clog("ANIBOT", f"Bot added to a new group\n\n{gidtitle}\nID: `{gid}`", "NEW_GROUP")
     find_gc = await DC.find_one({'_id': gid})
-    if find_gc is not None and 'manga' in find_gc['cmd_list'].split():
+    if find_gc is not None and 'mangareader' in find_gc['cmd_list'].split():
         return
     if len(text)==1:
         k = await message.reply_text("Please give a query to search about\nexample: /mangareader One Piece")
