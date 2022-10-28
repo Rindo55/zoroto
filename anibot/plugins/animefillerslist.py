@@ -60,5 +60,5 @@ async def filler_btn(client: anibot, cq: CallbackQuery, cdata: dict):
         msg += "\n\n**Anime Canon episodes:**\n"
         msg += str(result.get("ac_ep"))
     fillerx = await cq.edit_message_text(msg)
-        await asyncio.sleep(180)
+    await asyncio.sleep(180)
     return await fillerx.delete()
