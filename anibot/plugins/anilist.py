@@ -64,8 +64,7 @@ async def anime_cmd(client: Client, message: Message, mdata: dict):
         await asyncio.sleep(5)
         return await k.delete()
     query = text[1]
-    zoro_query = text[5]
-    zoro_url = f"https://zoro.to/search?keyword={zoro_query}"
+    zoro_url = f"https://zoro.to/search?keyword={text}"
     auth = False
     vars_ = {"search": query}
     if query.isdigit():
