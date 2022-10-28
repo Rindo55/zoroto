@@ -457,11 +457,8 @@ Stats:-
 **Groups:** {nosgrps}
 **Airing Groups:** {a}
 **Crunchyroll Groups:** {c}
-**Subsplease Groups:** {s}
 **Headline Groups:** {noshdgrps}
 **SFW Groups:** {nossgrps}
-**Stargazers:** {kk.get("stargazers_count")}
-**Forks:** {kk.get("forks")}
 **Ping:** `{pt} ms`
 """
     )
