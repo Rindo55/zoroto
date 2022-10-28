@@ -66,6 +66,7 @@ async def anime_cmd(client: Client, message: Message, mdata: dict):
         return await k.delete()
     query = text[1]
     zoro_query = args[1]
+    zoro_query = zoro_query.replace(" ","%20")
     zoro_url = f"https://zoro.to/search?keyword={zoro_query}"
     auth = False
     vars_ = {"search": query}
