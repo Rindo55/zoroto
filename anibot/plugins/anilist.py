@@ -434,11 +434,11 @@ async def auth_link_cmd(client, message: Message, mdata: dict):
 setting_text = """
 This allows you to change group settings
         
-NSFW toggle switches on filtering of 18+ marked content
-Airing notifications notifies about airing of anime in recent
-Crunchyroll updates will toggle notifications about release of animes on crunchyroll site
-Subsplease updates will toggle notifications about release of animes on subsplease site
-Headlines will toggle notifications for anime news powered by livechart.me
+• NSFW toggle switches on filtering of 18+ marked content
+• Airing notifications notifies about airing of anime in recent
+• Crunchyroll updates will toggle notifications about release of animes on crunchyroll site
+• Headlines will toggle notifications for anime news powered by livechart.me
+• Change UI can be used to change bullet style.
 """
 @anibot.on_message(~filters.private & filters.command(["settings", f"settings{BOT_NAME}"], prefixes=trg))
 @control_user
