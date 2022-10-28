@@ -105,7 +105,7 @@ async def manga_cmd(client: Client, message: Message, mdata: dict):
     if find_gc is not None and 'manga' in find_gc['cmd_list'].split():
         return
     if len(text)==1:
-        k = await message.reply_text("Please give a query to search about\nexample: /manga The teasing master Takagi san")
+        k = await message.reply_text("Please give a query to search about\nexample: /manga One Piece")
         await asyncio.sleep(5)
         return await k.delete()
     query = text[1]
@@ -125,10 +125,11 @@ async def manga_cmd(client: Client, message: Message, mdata: dict):
         buttons = get_btns("MANGA", lsqry=qdb, lspage=1, user=user, result=result, auth=auth, sfw="True")
         await client.send_photo(gid, no_pic[random.randint(0, 4)], caption="This manga is marked 18+ and not allowed in this group", reply_markup=buttons)
         return
-    await client.send_photo(gid, pic, caption=finals_, reply_markup=buttons)
+    mangax =await client.send_photo(gid, pic, caption=finals_, reply_markup=buttons)
     if pic not in PIC_LS:
         PIC_LS.append(pic)
-
+        await asyncio.sleep(180)
+        return await mangax.delete()
 
 @anibot.on_message(filters.command(["character", f"character{BOT_NAME}"], prefixes=trg))
 @control_user
@@ -149,7 +150,7 @@ async def character_cmd(client: Client, message: Message, mdata: dict):
     if find_gc is not None and 'character' in find_gc['cmd_list'].split():
         return
     if len(text)==1:
-        k = await message.reply_text("Please give a query to search about\nexample: /character Nezuko")
+        k = await message.reply_text("Please give a query to search about\nExample: /character Nami")
         await asyncio.sleep(5)
         return await k.delete()
     query = text[1]
@@ -166,8 +167,9 @@ async def character_cmd(client: Client, message: Message, mdata: dict):
     img = result[0]
     cap_text = result[1][0]
     buttons = get_btns("CHARACTER", user=user, lsqry=qdb, lspage=1, result=result, auth=auth)
-    await client.send_photo(gid, img, caption=cap_text, reply_markup=buttons)
-
+    characterx = await client.send_photo(gid, img, caption=cap_text, reply_markup=buttons)
+    await asyncio.sleep(180)
+    return await characterx.delete()
 
 @anibot.on_message(filters.command(["anilist", f"anilist{BOT_NAME}"], prefixes=trg))
 @control_user
@@ -179,7 +181,7 @@ async def anilist_cmd(client: Client, message: Message, mdata: dict):
     if find_gc is not None and 'anilist' in find_gc['cmd_list'].split():
         return
     if len(text)==1:
-        k = await message.reply_text("Please give a query to search about\nexample: /anilist rezero")
+        k = await message.reply_text("Please give a query to search about\nexample: /anilist Boku no Pico")
         await asyncio.sleep(5)
         return await k.delete()
     query = text[1]
@@ -199,11 +201,12 @@ async def anilist_cmd(client: Client, message: Message, mdata: dict):
         buttons = get_btns("ANIME", lsqry=qdb, lspage=1, result=result, user=user, auth=auth, sfw="True")
         await client.send_photo(gid, no_pic[random.randint(0, 4)], caption="This anime is marked 18+ and not allowed in this group", reply_markup=buttons)
         return
-    await client.send_photo(gid, pic, caption=msg, reply_markup=buttons)
+    anilistx = await client.send_photo(gid, pic, caption=msg, reply_markup=buttons)
     if pic not in PIC_LS:
         PIC_LS.append(pic)
-
-
+        await asyncio.sleep(180)
+        return await anilistx.delete()
+    
 @anibot.on_message(filters.command(["flex", f"flex{BOT_NAME}", "user", f"user{BOT_NAME}"], prefixes=trg))
 @control_user
 async def flex_cmd(client: Client, message: Message, mdata: dict):
@@ -215,7 +218,7 @@ async def flex_cmd(client: Client, message: Message, mdata: dict):
         if find_gc is not None and 'user' in find_gc['cmd_list'].split():
             return
         if not len(query)==2:
-            k = await message.reply_text("Please give an anilist username to search about\nexample: /user Lostb053")
+            k = await message.reply_text("Please give an anilist username to search about\nexample: /user herkz")
             await asyncio.sleep(5)
             return await k.delete()
         else:
@@ -257,8 +260,9 @@ async def top_tags_cmd(client: Client, message: Message, mdata: dict):
     if await (SFW_GRPS.find_one({"id": gid})) and str(result[0][1])=="True":
         return await message.reply_text('No nsfw stuff allowed in this group!!!')
     msg, buttons = result
-    await client.send_message(gid, msg[0], reply_markup=buttons if buttons!='' else None)
-
+    topx = await client.send_message(gid, msg[0], reply_markup=buttons if buttons!='' else None)
+    await asyncio.sleep(180)
+    return await topx.delete()
 
 @anibot.on_message(filters.command(["airing", f"airing{BOT_NAME}"], prefixes=trg))
 @control_user
@@ -270,7 +274,7 @@ async def airing_cmd(client: Client, message: Message, mdata: dict):
     if find_gc is not None and 'airing' in find_gc['cmd_list'].split():
         return
     if len(text)==1:
-        k = await message.reply_text("Please give a query to search about\nexample: /airing Fumetsu no Anata e")
+        k = await message.reply_text("Please give a query to search about\nexample: `/airing One Piece`")
         await asyncio.sleep(5)
         return await k.delete()
     query = text[1]
@@ -291,7 +295,7 @@ async def airing_cmd(client: Client, message: Message, mdata: dict):
         btn = get_btns("AIRING", user=user, result=result, auth=auth, lsqry=qdb, lspage=1, sfw="True")
         await client.send_photo(gid, no_pic[random.randint(0, 4)], caption="This anime is marked 18+ and not allowed in this group", reply_markup=btn)
         return
-    await client.send_photo(gid, coverImg, caption=out, reply_markup=btn)
+    airingx = await client.send_photo(gid, coverImg, caption=out, reply_markup=btn)
     update = True
     for i in PIC_LS:
         if coverImg in i:
@@ -299,7 +303,8 @@ async def airing_cmd(client: Client, message: Message, mdata: dict):
             break
     if update:
         PIC_LS.append(coverImg)
-
+    await asyncio.sleep(180)
+    return await airingx.delete()
 @anibot.on_message(filters.command(["schedule", f"schedule{BOT_NAME}"], prefixes=trg))
 @control_user
 async def get_schuled(client: anibot, message: Message, mdata: dict):
@@ -308,12 +313,11 @@ async def get_schuled(client: anibot, message: Message, mdata: dict):
     find_gc = await DC.find_one({'_id': gid})
     if find_gc is not None and 'schedule' in find_gc['cmd_list'].split():
         return
-    x = await client.send_message(gid, "<code>Fetching Scheduled Animes</code>")
+    x = await client.send_message(gid, "<code>Fetching Scheduled Anime</code>")
     user = mdata['from_user']['id']
     msg = await get_scheduled()
     buttons = get_btns("SCHEDULED", result=[0], user=user)
     await x.edit_text(msg, reply_markup=buttons)
-
 
 @anibot.on_callback_query(filters.regex(pattern=r"sched_(.*)"))
 @check_user
@@ -321,7 +325,9 @@ async def ns_(client: anibot, cq: CallbackQuery, cdata: dict):
     kek, day, user = cdata['data'].split("_")
     msg = await get_scheduled(int(day))
     buttons = get_btns("SCHEDULED", result=[int(day)], user=user)
-    await cq.edit_message_text(msg, reply_markup=buttons)
+    schedulex = await cq.edit_message_text(msg, reply_markup=buttons)
+    await asyncio.sleep(180)
+    return await schedulex.delete()
 
 @anibot.on_message(filters.command(["auth", f"auth{BOT_NAME}"], prefixes=trg))
 @control_user
@@ -375,9 +381,6 @@ async def sfw_cmd(client: Client, message: Message, mdata: dict):
         cr = "Crunchyroll Updates: OFF"
         if await (CG.find_one({"_id": cid})):
             cr = "Crunchyroll Updates: ON"
-        sp = "Subsplease Updates: OFF"
-        if await (SG.find_one({"_id": cid})):
-            sp = "Subsplease Updates: ON"
         hd = "Headlines: OFF"
         if await (HD.find_one({"_id": cid})):
             hd = "Headlines: ON"
@@ -387,12 +390,12 @@ async def sfw_cmd(client: Client, message: Message, mdata: dict):
                 [InlineKeyboardButton(text=sfw, callback_data=f"settogl_sfw_{cid}")],
                 [InlineKeyboardButton(text=notif, callback_data=f"settogl_notif_{cid}")],
                 [InlineKeyboardButton(text=cr, callback_data=f"settogl_cr_{cid}")],
-                [InlineKeyboardButton(text=sp, callback_data=f"settogl_sp_{cid}")],
                 [InlineKeyboardButton(text=hd, callback_data=f"settogl_hd_{cid}")],
                 [InlineKeyboardButton(text="Change UI", callback_data=f"cui_call_{cid}")]
             ])
         )
-
+        await asyncio.sleep(180)
+        return await text.delete()
 
 @anibot.on_message(filters.private & filters.command("code", prefixes=trg))
 @control_user
@@ -511,8 +514,9 @@ async def browse_cmd(client: Client, message: Message, mdata: dict):
         InlineKeyboardButton(up, callback_data=f'browse_{up.lower()}_{user}'),
     ]]
     msg = await browse_('trending')
-    await client.send_message(gid, msg, reply_markup=InlineKeyboardMarkup(btns))
-
+    browsex = await client.send_message(gid, msg, reply_markup=InlineKeyboardMarkup(btns))
+    await asyncio.sleep(180)
+    return await browsex.delete()
 
 @anibot.on_message(filters.command(["gettags", f"gettags{BOT_NAME}", "getgenres", f"getgenres{BOT_NAME}"], prefixes=trg))
 @control_user
@@ -527,8 +531,9 @@ async def list_tags_genres_cmd(client, message: Message, mdata: dict):
     if await (SFW_GRPS.find_one({"id": gid})) and 'nsfw' in text:
         return await message.reply_text('No nsfw allowed here!!!')
     msg = (await get_all_tags(text)) if "gettags" in text.split()[0] else (await get_all_genres())
-    await message.reply_text(msg)
-
+    genrex = await message.reply_text(msg)
+    await asyncio.sleep(180)
+    return await genrex.delete()
 
 @anibot.on_callback_query(filters.regex(pattern=r"page_(.*)"))
 @check_user
@@ -633,10 +638,6 @@ async def nsfw_toggle_btn(client: Client, cq: CallbackQuery):
         hd = "Headlines: ON"
     else:
         hd = "Headlines: OFF"
-    if await (SG.find_one({"_id": int(query[2])})):
-        sp = "Subsplease Updates: ON"
-    else:
-        sp = "Subsplease Updates: OFF"
     if query[1]=="sfw":
         if await (SFW_GRPS.find_one({"id": int(query[2])})):
             await SFW_GRPS.find_one_and_delete({"id": int(query[2])})
@@ -658,13 +659,6 @@ async def nsfw_toggle_btn(client: Client, cq: CallbackQuery):
         else:
             await CG.insert_one({"_id": int(query[2])})
             cr = "Crunchyroll Updates: ON"
-    if query[1]=="sp":
-        if await (SG.find_one({"_id": int(query[2])})):
-            await SG.find_one_and_delete({"_id": int(query[2])})
-            sp = "Subsplease Updates: OFF"
-        else:
-            await SG.insert_one({"_id": int(query[2])})
-            sp = "Subsplease Updates: ON"
     if query[1]=="hd":
         if await (HD.find_one({"_id": int(query[2])})):
             await HD.find_one_and_delete({"_id": int(query[2])})
@@ -1028,13 +1022,13 @@ async def change_ui_btn(client: Client, cq: CallbackQuery):
         if await GUI.find_one({"_id": gid}):
             await GUI.update_one({"_id": gid}, {"$set" : {"cs": qry[1]}})
         else:
-            await GUI.insert_one({"_id": gid, "bl": "➤", "cs": qry[1]})
+            await GUI.insert_one({"_id": gid, "bl": "⋟", "cs": qry[1]})
     elif qry[1]!="call":
         if await GUI.find_one({"_id": gid}):
             await GUI.update_one({"_id": gid}, {"$set": {"bl": qry[1]}})
         else:
             await GUI.insert_one({"_id": gid, "bl": qry[1], "cs": "UPPER"})
-    bl = "➤"
+    bl = "⋟"
     cs = "UPPER"
     if await GUI.find_one({"_id": gid}):
         bl = (await GUI.find_one({"_id": gid}))["bl"]
@@ -1057,5 +1051,5 @@ async def confirm_user(client: Client, cq: CallbackQuery):
         await func(client, message, mdata)
         return
     if str(k)=="member":
-        await cq.answer("You didnt made this query!!!", show_alert=True)
+        await cq.answer("You didn't make this query!!!", show_alert=True)
         return
