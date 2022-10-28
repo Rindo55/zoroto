@@ -68,13 +68,13 @@ Below is the list of basic anilist cmds for info on anime, character, manga, etc
 
 /airing - Use this cmd to get info on airing status of anime
 
-/top - Use this cmd to lookup top animes of a genre/tag or from all animes
+/top - Use this cmd to get top animes of a genre/tag or from all anime
 (To get a list of available tags or genres send /gettags or /getgenres
 '/gettags nsfw' for nsfw tags)
 
 /user - Use this cmd to get info on an anilist user
 
-/browse - Use this cmd to get updates about latest animes
+/browse - Use this cmd to get updates about latest anime
 """
 
 HELP_DICT["Oauth"] = """
