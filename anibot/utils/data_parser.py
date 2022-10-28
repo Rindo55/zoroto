@@ -37,7 +37,7 @@ ANIME_TEMPLATE = """{name}
 
 🎬 {trailer_link}
 📖 <a href="{surl}">Synopsis</a>
-📖 <a href="{url}">More Info</a>
+🔗 <a href="{url}">More Info</a>
 <a href="https://t.me/{bot}?start=anirec_{idm}">Recommended for you</a>
 
 {additional}"""
