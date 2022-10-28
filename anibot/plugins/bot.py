@@ -237,7 +237,7 @@ async def db_cleanup(client: anibot, message: Message, mdata: dict):
         await x.reply_text(entries)
     await x.edit_text(msg)
 
-
+zoro_img = "https://i.ibb.co/thzrQm1/photo-2022-10-28-00-00-26.jpg"
 @anibot.on_message(filters.command(['start', f'start{BOT_NAME}'], prefixes=trg))
 @control_user
 async def start_(client: anibot, message: Message, mdata: dict):
@@ -294,14 +294,50 @@ async def start_(client: anibot, message: Message, mdata: dict):
                 k = await AUTH_USERS.find_one({'_id': ObjectId(qry)})
                 await code_cmd(k['code'], message)
                 return
-        await client.send_message(
-            gid,
+        await client.reply_photo(
+            gid, zoro_img, 
             text=f"""Yo! I stopped telling myself that I'm lost. I'm on a road with no destination. I'm just driving with hope that I'll find a place that I like & stay there. I'm not lost. I'm on my way. 
 
 I can help you get info on anime, mangas, characters, airing, schedules, Watch Orders of Animes, filler list etc
 For more info send /help here.
-Currently serving at [Zoro Community](https://t.me/joinchat/Cd6xjR_S7wpkM2Rl)."""
-        )
+Currently serving at [Zoro Community](https://t.me/joinchat/Cd6xjR_S7wpkM2Rl).""", disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton(
+                                text="Anime",
+                                url=f"https://Zoro.to",
+                            ),
+                            InlineKeyboardButton(
+                                text="Manga",
+                                url="https://mangareader.to",
+                            ),
+                        ],
+                        [
+                            InlineKeyboardButton(
+                                text="Movies & Series",
+                                url="https://goku.to",
+                            ),
+                        ],
+                        [
+                            InlineKeyboardButton(
+                                text="Community",
+                                url="https://t.me/joinchat/Cd6xjR_S7wpkM2Rl",
+                            ),
+                            InlineKeyboardButton(
+                                text="Announcements",
+                                url="https://t.me/ZoroZone",
+                            ),
+                        ],
+                        [
+                            InlineKeyboardButton(
+                                text="Discord",
+                                url="https://discord.com/invite/zoroanime",
+                            ),
+                        ],
+                    ],
+                ),
+            )
     else:
         if not await (GROUPS.find_one({"id": gid})):
             try:
