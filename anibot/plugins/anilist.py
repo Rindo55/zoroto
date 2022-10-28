@@ -81,7 +81,7 @@ async def anime_cmd(client: Client, message: Message, mdata: dict):
     if await (SFW_GRPS.find_one({"id": gid})) and result[2].pop()=="True":
         await client.send_photo(gid, no_pic[random.randint(0, 4)], caption="This anime is marked 18+ and not allowed in this group")
         return
-    animexx = await client.send_photo(gid, title_img, caption=finals_, reply_markup=buttons, InlineKeyboardMarkup(         
+    animexx = await client.send_photo(gid, title_img, caption=finals_, reply_markup=InlineKeyboardMarkup(         
                                       [
                             InlineKeyboardButton(
                                 text="Watch Online",
