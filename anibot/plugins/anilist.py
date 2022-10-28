@@ -64,6 +64,7 @@ async def anime_cmd(client: Client, message: Message, mdata: dict):
         await asyncio.sleep(5)
         return await k.delete()
     query = text[1]
+    zoro_url = f"https://zoro.to/search?keyword={query}"
     auth = False
     vars_ = {"search": query}
     if query.isdigit():
@@ -87,7 +88,7 @@ async def anime_cmd(client: Client, message: Message, mdata: dict):
                         [
                             InlineKeyboardButton(
                                 text="Watch Online",
-                                url="https://zoro.to/search?keyword={query}",
+                                url=zoro_url,
                             ),
                         ],
                       ],
