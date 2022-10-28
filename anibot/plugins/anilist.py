@@ -81,7 +81,7 @@ async def anime_cmd(client: Client, message: Message, mdata: dict):
     if await (SFW_GRPS.find_one({"id": gid})) and result[2].pop()=="True":
         await client.send_photo(gid, no_pic[random.randint(0, 4)], caption="This anime is marked 18+ and not allowed in this group")
         return
-    animexx = await client.send_photo(gid, title_img, caption=finals_, reply_markup=buttons)
+    animexx = await client.send_photo(gid, title_img, caption=finals_, reply_markup=buttons + InlineKeyboardMarkup([[InlineKeyboardButton("Watch online", url=f"https://zoro.to")]]))
     if title_img not in PIC_LS:
         PIC_LS.append(title_img)
     await asyncio.sleep(180)
@@ -887,7 +887,7 @@ async def additional_info_btn(client: Client, cq: CallbackQuery, cdata: dict):
         if kek == "desc"
         else "<b>Series List</b>"
         if kek == "ls"
-        else "<b> List</b>"
+        else "<b>Characters List</b>"
     )
     page = 0
     lsqry = f"_{q[3]}" if len(q) > 6 else ""
