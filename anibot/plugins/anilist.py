@@ -81,11 +81,11 @@ async def anime_cmd(client: Client, message: Message, mdata: dict):
     if await (SFW_GRPS.find_one({"id": gid})) and result[2].pop()=="True":
         await client.send_photo(gid, no_pic[random.randint(0, 4)], caption="This anime is marked 18+ and not allowed in this group")
         return
-    await client.send_photo(gid, title_img, caption=finals_, reply_markup=buttons)
+    animexx = await client.send_photo(gid, title_img, caption=finals_, reply_markup=buttons)
     if title_img not in PIC_LS:
         PIC_LS.append(title_img)
-
-
+    await asyncio.sleep(180)
+    return await animexx.delete()
 @anibot.on_message(filters.command(["manga", f"manga{BOT_NAME}"], prefixes=trg))
 @control_user
 async def manga_cmd(client: Client, message: Message, mdata: dict):
@@ -128,8 +128,8 @@ async def manga_cmd(client: Client, message: Message, mdata: dict):
     mangax =await client.send_photo(gid, pic, caption=finals_, reply_markup=buttons)
     if pic not in PIC_LS:
         PIC_LS.append(pic)
-        await asyncio.sleep(180)
-        return await mangax.delete()
+    await asyncio.sleep(180)
+    return await mangax.delete()
 
 @anibot.on_message(filters.command(["character", f"character{BOT_NAME}"], prefixes=trg))
 @control_user
