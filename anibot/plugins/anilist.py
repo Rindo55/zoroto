@@ -151,6 +151,7 @@ async def manga_cmd(client: Client, message: Message, mdata: dict):
 async def mangareader_cmd(client: Client, message: Message, mdata: dict):
     """Search Manga Info"""
     text = mdata['text'].split(" ", 1)
+    args = message.text.split(" ", 1)
     gid = mdata['chat']['id']
     gidtype = mdata['chat']['type']
     user = mdata['from_user']['id']
@@ -169,7 +170,8 @@ async def mangareader_cmd(client: Client, message: Message, mdata: dict):
         await asyncio.sleep(5)
         return await k.delete()
     query = text[1]
-    mangareader_query = text.replace(" ", "%20")
+    mangareader_query = args[1]
+    mangareader_query = mangareader_query.replace(" ","%20") 
     mangareader_url = f"https://zoro.to/search?keyword={mangareader_query}"
     qdb = rand_key()
     MANGA_DB[qdb] = query
