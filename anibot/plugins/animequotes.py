@@ -15,4 +15,6 @@ async def quote(_, message: Message, mdata: dict):
     if find_gc is not None and 'quote' in find_gc['cmd_list'].split():
         return
     q = requests.get("https://animechan.vercel.app/api/random").json()
-    await message.reply_text('`'+q['quote']+'`\n\n—  **'+q['character']+'** (From __'+q['anime']+'__)')
+    quotex = await message.reply_text('`'+q['quote']+'`\n\n—  **'+q['character']+'** (From __'+q['anime']+'__)')
+        await asyncio.sleep(180)
+    return await quotex.delete()
