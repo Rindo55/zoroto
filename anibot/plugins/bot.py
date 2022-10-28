@@ -300,7 +300,7 @@ async def start_(client: anibot, message: Message, mdata: dict):
 
 I can help you get info on anime, mangas, characters, airing, schedules, Watch Orders of Animes, filler list etc
 For more info send /help.
-Currently serving at [Zoro Community](https://t.me/joinchat/Cd6xjR_S7wpkM2Rl).""", disable_web_page_preview=True,
+Currently serving at [Zoro Community](https://t.me/joinchat/Cd6xjR_S7wpkM2Rl).""",
             reply_markup=InlineKeyboardMarkup(
                     [
                         [
