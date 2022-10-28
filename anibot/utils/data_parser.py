@@ -38,7 +38,8 @@ ANIME_TEMPLATE = """{name}
 🎬 {trailer_link}
 📖 <a href="{surl}">Synopsis</a>
 🔗 <a href="{url}">More Info</a>
-<a href="https://t.me/{bot}?start=anirec_{idm}">Recommended for you</a>
+
+<a href="https://t.me/{bot}?start=anirec_{idm}">Similar anime</a>
 
 {additional}"""
 
@@ -1127,9 +1128,9 @@ async def get_anilist(qdb, page, auth: bool = False, user: int = None, cid: int 
             in_ls_score = f" and scored {in_list['score']}" if in_list['score']!=0 else ""
             user_data = f"\n{bl}**{text[4]}:** `{in_ls_stts}{fav}{in_ls_score}`"
     if data["title"]["english"] is not None:
-        name = f"[{c_flag}]**{english}** (`{native}`)"
+        name = f"[{c_flag}] **{english}** (`{native}`)"
     else:
-        name = f"[{c_flag}]**{romaji}** (`{native}`)"
+        name = f"[{c_flag}] **{romaji}** (`{native}`)"
     prql, sql = "", ""
     for i in prqlsql:
         if i["relationType"] == "PREQUEL":
@@ -1164,7 +1165,7 @@ async def get_anilist(qdb, page, auth: bool = False, user: int = None, cid: int 
         th = pos_no(str(eps))
         air_on += f" ({eps}{th} ep)"
     if air_on  is None:
-        eps_ = f"` | `{episodes} ep" if episodes is not None else ""
+        eps_ = f"` | `{episodes} ep/s" if episodes is not None else ""
         status_air = f"{bl}**{text[6]}:** {status}{eps_}"
     else:
         status_air = f"{bl}**{text[6]}:** {status}\n{bl}**{text[11]}:** {air_on}"
@@ -1275,11 +1276,11 @@ async def get_manga(qdb, page, auth: bool = False, user: int = None, cid: int = 
             in_ls_stts = in_list['status']
             in_ls_score = f" and scored {in_list['score']}" if in_list['score']!=0 else ""
             user_data = f"{bl}**{text[4]}:** `{in_ls_stts}{fav}{in_ls_score}`\n"
-    name = f"""[{c_flag}]**{romaji}**
+    name = f"""[{c_flag}] **{romaji}**
         __{english}__
         {native}"""
     if english  is None:
-        name = f"""[{c_flag}]**{romaji}**
+        name = f"""[{c_flag}] **{romaji}**
         {native}"""
     finals_ = f"{name}\n━━━━━━━━━━━━━━━━━━━━━━\n"
     finals_ += f"{bl}**{text[6]}:** {status}\n"
