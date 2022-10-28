@@ -172,7 +172,7 @@ async def mangareader_cmd(client: Client, message: Message, mdata: dict):
     query = text[1]
     mangareader_query = args[1]
     mangareader_query = mangareader_query.replace(" ","%20") 
-    mangareader_url = f"https://zoro.to/search?keyword={mangareader_query}"
+    mangareader_url = f"https://mangareader.to/search?keyword={mangareader_query}"
     qdb = rand_key()
     MANGA_DB[qdb] = query
     auth = False
