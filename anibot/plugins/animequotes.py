@@ -16,5 +16,5 @@ async def quote(_, message: Message, mdata: dict):
         return
     q = requests.get("https://animechan.vercel.app/api/random").json()
     quotex = await message.reply_text('`'+q['quote']+'`\n\n—  **'+q['character']+'** (From __'+q['anime']+'__)')
-        await asyncio.sleep(180)
+    await asyncio.sleep(180)
     return await quotex.delete()
