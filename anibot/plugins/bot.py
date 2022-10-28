@@ -294,9 +294,9 @@ async def start_(client: anibot, message: Message, mdata: dict):
                 k = await AUTH_USERS.find_one({'_id': ObjectId(qry)})
                 await code_cmd(k['code'], message)
                 return
-        await message.reply_photo(
+        await message.send_photo(
             gid, zoro_img, 
-            text=f"""Yo! I stopped telling myself that I'm lost. I'm on a road with no destination. I'm just driving with hope that I'll find a place that I like & stay there. I'm not lost. I'm on my way. 
+            caption=f"""Yo! I stopped telling myself that I'm lost. I'm on a road with no destination. I'm just driving with hope that I'll find a place that I like & stay there. I'm not lost. I'm on my way. 
 
 I can help you get info on anime, mangas, characters, airing, schedules, Watch Orders of Animes, filler list etc
 For more info send /help.
