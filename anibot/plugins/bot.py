@@ -296,10 +296,11 @@ async def start_(client: anibot, message: Message, mdata: dict):
                 return
         await client.send_photo(
             gid, zoro_img, 
-            caption=f"""Yo! I stopped telling myself that I'm lost. I'm on a road with no destination. I'm just driving with hope that I'll find a place that I like & stay there. I'm not lost. I'm on my way. 
+            caption=f"""__Yo! I stopped telling myself that I'm lost. I'm on a road with no destination. I'm just driving with hope that I'll find a place that I like & stay there. I'm not lost. I'm on my way.__ 
 
-I can help you get info on anime, mangas, characters, airing, schedules, Watch Orders of Animes, filler list etc
-For more info send /help.
+__I can help you get info on anime, manga, characters, airing, schedules, Watch Order of Anime, filler list etc.__
+**For more info send /help.**
+
 Currently serving at [Zoro Community](https://t.me/joinchat/Cd6xjR_S7wpkM2Rl).""",
             reply_markup=InlineKeyboardMarkup(
                     [
