@@ -9,14 +9,12 @@ from datetime import datetime, timedelta
 from os.path import basename
 from typing import Tuple, Optional
 from uuid import uuid4
-from pyrogram import filters, Client
 from pyrogram.errors import FloodWait, MessageNotModified, UserNotParticipant
 from pyrogram.types import InlineKeyboardButton, CallbackQuery, Message, InlineKeyboardMarkup
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from .. import OWNER, DOWN_PATH, anibot, LOG_CHANNEL_ID, has_user
 from ..utils.db import get_collection
 from .. import BOT_NAME
-from .. import TRIGGERS as trg
 
 if has_user:
     from .. import user
@@ -83,15 +81,6 @@ def control_user(func):
         except MessageNotModified:
             pass
     return wrapper
-
-@anibot.on_message(filters.command(["anime", f"anilist{"BOT_NAME"}"], prefixes=trg))
-@control_user
-async def anime_cmd(client: Client, message: Message, mdata: dict):
-    text = mdata['text'].split(" ", 1)
-    args = message.text.split(" ", 1)
-    zoro_query = args[1]
-    zoro_query = zoro_query.replace(" ","%20")
-    zoro_url = f"https://zoro.to/search?keyword={zoro_query}"
 
 def check_user(func):
     async def wrapper(_, c_q: CallbackQuery):
@@ -282,7 +271,6 @@ def get_btns(media, user: int, result: list, lsqry: str = None, lspage: int = No
     pg = f"_{lspage}" if lspage is not None else ""
     if media == "ANIME" and sfw == "False":
         buttons.append([
-            InlineKeyboardButton(text="W", url=zoro_url),
             InlineKeyboardButton(text="Characters", callback_data=f"char_{result[2][0]}_ANI{qry}{pg}_{str(auth)}_1_{user}"),
             InlineKeyboardButton(text="Description", callback_data=f"desc_{result[2][0]}_ANI{qry}{pg}_{str(auth)}_{user}"),
             InlineKeyboardButton(text="List Series", callback_data=f"ls_{result[2][0]}_ANI{qry}{pg}_{str(auth)}_{user}"),
