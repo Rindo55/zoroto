@@ -9,6 +9,7 @@ from datetime import datetime, timedelta
 from os.path import basename
 from typing import Tuple, Optional
 from uuid import uuid4
+from pyrogram import filters, Client
 from pyrogram.errors import FloodWait, MessageNotModified
 from pyrogram.types import InlineKeyboardButton, CallbackQuery, Message, InlineKeyboardMarkup
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
