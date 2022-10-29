@@ -14,6 +14,7 @@ from pyrogram.types import InlineKeyboardButton, CallbackQuery, Message, InlineK
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from .. import OWNER, DOWN_PATH, anibot, LOG_CHANNEL_ID, has_user
 from ..utils.db import get_collection
+from .. import BOT_NAME
 
 if has_user:
     from .. import user
@@ -81,7 +82,7 @@ def control_user(func):
             pass
     return wrapper
 
-@anibot.on_message(filters.command(["anime", f"anilist{"@ZoroLostBot"}"], prefixes=trg))
+@anibot.on_message(filters.command(["anime", f"anilist{"BOT_NAME"}"], prefixes=trg))
 @control_user
 async def anime_cmd(client: Client, message: Message, mdata: dict):
     text = mdata['text'].split(" ", 1)
