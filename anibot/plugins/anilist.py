@@ -370,7 +370,7 @@ async def airing_cmd(client: Client, message: Message, mdata: dict):
         btn = get_btns("AIRING", user=user, result=result, auth=auth, lsqry=qdb, lspage=1, sfw="True")
         await client.send_photo(gid, no_pic[random.randint(0, 4)], caption="This anime is marked 18+ and not allowed in this group", reply_markup=btn)
         return
-    airingx = await client.send_photo(gid, coverImg, caption=out, reply_markup=btn)
+    airingx = await client.send_message(text=out, reply_markup=btn)
     update = True
     for i in PIC_LS:
         if coverImg in i:
