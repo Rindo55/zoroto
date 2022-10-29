@@ -272,7 +272,7 @@ async def anime_cmd(client: Client, message: Message, mdata: dict):
         return await k.delete()
     pic, msg = result[0], result[1][0]
     buttons = get_btns("ANIME", lsqry=qdb, lspage=1, result=result, user=user, auth=auth)
-    buttons = buttons.append([InlineKeyboardButton("📺 Watch Online", url=zoro_url)])
+    buttons =+ buttons.append([InlineKeyboardButton(text="📺 Watch Online", url=zoro_url)])
     if await (SFW_GRPS.find_one({"id": gid})) and result[2].pop()=="True":
         buttons = get_btns("ANIME", lsqry=qdb, lspage=1, result=result, user=user, auth=auth, sfw="True")
         await client.send_photo(gid, no_pic[random.randint(0, 4)], caption="This anime is marked 18+ and not allowed in this group", reply_markup=buttons)
