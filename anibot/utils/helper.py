@@ -14,6 +14,7 @@ from pyrogram.types import InlineKeyboardButton, CallbackQuery, Message, InlineK
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from .. import OWNER, DOWN_PATH, anibot, LOG_CHANNEL_ID, has_user
 from ..utils.db import get_collection
+from ..plugins.anilist import zoro_url
 
 if has_user:
     from .. import user
@@ -271,6 +272,7 @@ def get_btns(media, user: int, result: list, lsqry: str = None, lspage: int = No
     pg = f"_{lspage}" if lspage is not None else ""
     if media == "ANIME" and sfw == "False":
         buttons.append([
+            InlineKeyboardButton(text="W", url=zoro_url),
             InlineKeyboardButton(text="Characters", callback_data=f"char_{result[2][0]}_ANI{qry}{pg}_{str(auth)}_1_{user}"),
             InlineKeyboardButton(text="Description", callback_data=f"desc_{result[2][0]}_ANI{qry}{pg}_{str(auth)}_{user}"),
             InlineKeyboardButton(text="List Series", callback_data=f"ls_{result[2][0]}_ANI{qry}{pg}_{str(auth)}_{user}"),
