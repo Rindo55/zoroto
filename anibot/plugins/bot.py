@@ -11,7 +11,7 @@ from bson.objectid import ObjectId
 from bs4 import BeautifulSoup as bs
 from datetime import datetime
 from natsort import natsorted
-from pyrogram import filters
+from pyrogram import filters, Client
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 from pyrogram.errors import ChannelInvalid as ci, ChannelPrivate as cp, PeerIdInvalid as pi, FloodWait as fw
 from .. import BOT_NAME, TRIGGERS as trg, OWNER, HELP_DICT, anibot, DOWN_PATH, LOG_CHANNEL_ID
