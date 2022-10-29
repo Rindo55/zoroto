@@ -1338,8 +1338,7 @@ async def get_airing(qry, ind: int, auth: bool = False, user: int = None):
     if air_on:
         out += f"Airing Episode `{episode}{th}` in `{air_on}`"
     site = data["siteUrl"]
-    return [coverImg, out], [site, result["data"]["Page"]["pageInfo"]["total"]], [mid, in_ls, in_ls_id, isfav]
-
+    return [coverImg, out], [site, result["data"]["Page"]["pageInfo"]["total"]]
 
 async def toggle_favourites(id_: int, media: str, user: int):
     vars_ = {"id": int(id_)}
