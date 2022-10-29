@@ -365,7 +365,7 @@ async def airing_cmd(client: Client, message: Message, mdata: dict):
         await asyncio.sleep(5)
         return await k.delete()
     coverImg, out = result[0]
-    btn = get_btns("AIRING", user=user, result=result, auth=auth, lsqry=qdb, lspage=1)
+    btn = get_btns("AIRING", user=user, result=result, lsqry=qdb, lspage=1)
     if await (SFW_GRPS.find_one({"id": gid})) and result[2].pop()=="True":
         btn = get_btns("AIRING", user=user, result=result, auth=auth, lsqry=qdb, lspage=1, sfw="True")
         await client.send_photo(gid, no_pic[random.randint(0, 4)], caption="This anime is marked 18+ and not allowed in this group", reply_markup=btn)
