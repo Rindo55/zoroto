@@ -41,9 +41,9 @@ no_pic = [
 ]
 
 
-@anibot.on_message(filters.command(["anime", f"anime{BOT_NAME}"], prefixes=trg))
+@anibot.on_message(filters.command(["zoro", f"anime{BOT_NAME}"], prefixes=trg))
 @control_user
-async def anime_cmd(client: Client, message: Message, mdata: dict):
+async def zoro_cmd(client: Client, message: Message, mdata: dict):
     """Search Anime Info"""
     text = mdata['text'].split(" ", 1)
     args = message.text.split(" ", 1)
@@ -58,10 +58,10 @@ async def anime_cmd(client: Client, message: Message, mdata: dict):
         await GROUPS.insert_one({"id": gid, "grp": gidtitle})
         await clog("ANIBOT", f"Bot added to a new group\n\n{gidtitle}\nID: `{gid}`", "NEW_GROUP")
     find_gc = await DC.find_one({'_id': gid})
-    if find_gc is not None and 'anime' in find_gc['cmd_list'].split():
+    if find_gc is not None and 'zoro' in find_gc['cmd_list'].split():
         return
     if len(text)==1:
-        k = await message.reply_text("Please give a query to search about\nexample: `/anime One Piece`")
+        k = await message.reply_text("Please give a query to search about\nexample: `/zoro One Piece`")
         await asyncio.sleep(5)
         return await k.delete()
     query = text[1]
@@ -246,17 +246,17 @@ async def character_cmd(client: Client, message: Message, mdata: dict):
     await asyncio.sleep(180)
     return await characterx.delete()
 
-@anibot.on_message(filters.command(["anilist", f"anilist{BOT_NAME}"], prefixes=trg))
+@anibot.on_message(filters.command(["anime", f"anilist{BOT_NAME}"], prefixes=trg))
 @control_user
-async def anilist_cmd(client: Client, message: Message, mdata: dict):
+async def anime_cmd(client: Client, message: Message, mdata: dict):
     text = mdata['text'].split(" ", 1)
     gid = mdata['chat']['id']
     user = mdata['from_user']['id']
     find_gc = await DC.find_one({'_id': gid})
-    if find_gc is not None and 'anilist' in find_gc['cmd_list'].split():
+    if find_gc is not None and 'anime' in find_gc['cmd_list'].split():
         return
     if len(text)==1:
-        k = await message.reply_text("Please give a query to search about\nexample: /anilist Boku no Pico")
+        k = await message.reply_text("Please give a query to search about\nexample: /anime Boku no Pico")
         await asyncio.sleep(5)
         return await k.delete()
     query = text[1]
