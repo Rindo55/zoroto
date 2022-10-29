@@ -14,7 +14,6 @@ from pyrogram.types import InlineKeyboardButton, CallbackQuery, Message, InlineK
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from .. import OWNER, DOWN_PATH, anibot, LOG_CHANNEL_ID, has_user
 from ..utils.db import get_collection
-from ..plugins.anilist import zoro_url
 
 if has_user:
     from .. import user
@@ -82,6 +81,14 @@ def control_user(func):
             pass
     return wrapper
 
+@anibot.on_message(filters.command(["anime", f"anilist{"@ZoroLostBot"}"], prefixes=trg))
+@control_user
+async def anime_cmd(client: Client, message: Message, mdata: dict):
+    text = mdata['text'].split(" ", 1)
+    args = message.text.split(" ", 1)
+    zoro_query = args[1]
+    zoro_query = zoro_query.replace(" ","%20")
+    zoro_url = f"https://zoro.to/search?keyword={zoro_query}"
 
 def check_user(func):
     async def wrapper(_, c_q: CallbackQuery):
