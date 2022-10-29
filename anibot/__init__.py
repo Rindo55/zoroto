@@ -51,16 +51,16 @@ Use /watch cmd to get watch order of searched anime
 Use /fillers cmd to get a list of fillers for an anime
 
 Use /quote cmd to get a random quote
+
+Use /zoro cmd to get anime info + link to watch on zoro.to
+
+Use /mangareader to get manga info + link to read on mangareader.to
 """
 
 HELP_DICT["Anilist"] = """
 Below is the list of basic anilist cmds for info on anime, character, manga, etc.
 
-/anime - Use this cmd to get info on specific anime using keywords (anime name) or Anilist ID
-(Can lookup info on sequels and prequels)
-
-/anilist - Use this cmd to choose between multiple animes with similar names related to searched query
-(Doesn't includes buttons for prequel and sequel)
+/anime - Use this cmd to get info on anime using keywords (anime name) or Anilist ID
 
 /character - Use this cmd to get info on character
 
