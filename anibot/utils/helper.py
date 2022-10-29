@@ -15,6 +15,7 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from .. import OWNER, DOWN_PATH, anibot, LOG_CHANNEL_ID, has_user
 from ..utils.db import get_collection
 from .. import BOT_NAME
+from .. import TRIGGERS as trg
 
 if has_user:
     from .. import user
