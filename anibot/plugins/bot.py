@@ -347,7 +347,7 @@ Currently serving at [Zoro Community](https://t.me/joinchat/Cd6xjR_S7wpkM2Rl).""
                 gidtitle = mdata['chat']['title']
             await GROUPS.insert_one({"id": gid, "grp": gidtitle})
             await clog("ANIBOT", f"Bot added to a new group\n\n{gidtitle}\nID: `{gid}`", "NEW_GROUP")
-        await client.send_message(gid, text="Where am I?")
+        await client.send_sticker(gid, "AAMCBQADGQEAARK5r2NkAugkpOLHMniM7_ll4SszxPUIAAJiAQACaoQ8NqZ4YmHDHzDhAQAHbQADKgQ")
 
 
 @anibot.on_message(filters.command(['help', f'help{BOT_NAME}'], prefixes=trg))
