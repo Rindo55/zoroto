@@ -287,8 +287,8 @@ async def anime_cmd(client: Client, message: Message, mdata: dict):
     
 @anibot.on_message(filters.command(["movie", f",movie{BOT_NAME}"], prefixes=trg))
 @control_user
-async def character_cmd(client: Client, message: Message, mdata: dict):
-    """Get Info about a Character"""
+async def movie_cmd(client: Client, message: Message, mdata: dict):
+    """Get Info about a movie"""
     text = mdata['text'].split(" ", 1)
     gid = mdata['chat']['id']
     gidtype = mdata['chat']['type']
