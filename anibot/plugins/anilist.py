@@ -311,7 +311,7 @@ async def movie_cmd(client: Client, message: Message, mdata: dict):
     ia = imdb.IMDb()
     movie_name=query
     search = ia.search_movie(movie_name) 
-    id=search[0].movieID
+    id="tt"+search[0].movieID
     api_key=e6cf0de6
     url= 'http://www.omdbapi.com/?i='+id+'&apikey='+api_key
     x=urllib.request.urlopen(url)
