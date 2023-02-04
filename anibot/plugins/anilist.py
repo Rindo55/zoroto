@@ -285,52 +285,6 @@ async def anime_cmd(client: Client, message: Message, mdata: dict):
         await asyncio.sleep(180)
         return await anilistx.delete()
     
-@anibot.on_message(filters.command(["movie", f",movie{BOT_NAME}"], prefixes=trg))
-@control_user
-async def movie_cmd(client: Client, message: Message, mdata: dict):
-    """Get Info about a movie"""
-    text = mdata['text'].split(" ", 1)
-    gid = mdata['chat']['id']
-    gidtype = mdata['chat']['type']
-    user = mdata['from_user']['id']
-    if gidtype in ["supergroup", "group"] and not await (GROUPS.find_one({"id": gid})):
-        try:
-            gidtitle = mdata['chat']['username']
-        except KeyError:
-            gidtitle = mdata['chat']['title']
-        await GROUPS.insert_one({"id": gid, "grp": gidtitle})
-        await clog("ANIBOT", f"Bot added to a new group\n\n{gidtitle}\nID: `{gid}`", "NEW_GROUP")
-    find_gc = await DC.find_one({'_id': gid})
-    if find_gc is not None and 'movie' in find_gc['cmd_list'].split():
-        return
-    if len(text)==1:
-        k = await message.reply_text("Please give a query to search about\nExample: `/movie avatar`")
-        await asyncio.sleep(5)
-        return await k.delete()
-    query = text[1]
-    ia = imdb.IMDb()
-    movie_name=query
-    search = ia.search_movie(movie_name) 
-    id="tt"+search[0].movieID
-    api_key=e6cf0de6
-    url= 'http://www.omdbapi.com/?i='+id+'&apikey='+api_key
-    x=urllib.request.urlopen(url)
-    
-    for line in x:
-        x=line.decode()
-    
-    data=json.loads(x)
-    
-    ans=''
-    ans+='*'+data['Title']+'* ('+data['Year']+')'+'\n\n'
-    ans+='*IMDb Rating*: '+data['imdbRating']+' \n'
-    ans+='*Cast*: '+data['Actors']+'\n'
-    ans+='*Genre*: '+data['Genre']+'\n\n'
-    ans+='*Plot*: '+data['Plot']+'\n'
-    ans+='[.]('+data['Poster']+')'
-    update.message.reply_text(ans,parse_mode='markdown') 
-
-    
 @anibot.on_message(filters.command(["flex", f"flex{BOT_NAME}", "user", f"user{BOT_NAME}"], prefixes=trg))
 @control_user
 async def flex_cmd(client: Client, message: Message, mdata: dict):
