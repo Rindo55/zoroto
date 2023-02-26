@@ -3,7 +3,7 @@ from pyrogram import Client
 from aiohttp import ClientSession
 
 TRIGGERS = "/ !"
-API_HASH = os.environ.get("API_HASH")
+API_HASH = "95937bcf6bc0938f263fc7ad96959c6d"
 BOT_TOKEN = "5787191452:AAGPcjesbDih65vqH5rUFbrxZ96yHemISi4"
 BOT_NAME = "@ZoroLostBot"
 DB_URL = "mongodb+srv://zoro:lost@cluster0.4zwdyde.mongodb.net/?retryWrites=true&w=majority"
