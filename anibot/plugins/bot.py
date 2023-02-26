@@ -6,7 +6,6 @@ import re
 import subprocess
 import asyncio
 import requests
-import tracemoepy
 from bson.objectid import ObjectId
 from bs4 import BeautifulSoup as bs
 from datetime import datetime
@@ -50,7 +49,6 @@ CMD = [
     'schedule',
     'fillers',
     'top',
-    'reverse',
     'watch',
     'start',
     'ping',
