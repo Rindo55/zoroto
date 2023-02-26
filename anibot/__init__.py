@@ -2,7 +2,7 @@ import os
 from pyrogram import Client
 from aiohttp import ClientSession
 
-TRIGGERS = "/ !"
+TRIGGERS = "/"
 API_HASH = "95937bcf6bc0938f263fc7ad96959c6d"
 BOT_TOKEN = "5787191452:AAGPcjesbDih65vqH5rUFbrxZ96yHemISi4"
 BOT_NAME = "@ZoroLostBot"
