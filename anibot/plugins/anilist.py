@@ -15,7 +15,6 @@ import os
 from pyrogram import filters, Client
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup, InputMediaPhoto, Message
 import urllib.request
-import imdb
 from pyrogram.errors import UserNotParticipant
 from .. import ANILIST_CLIENT, ANILIST_REDIRECT_URL, ANILIST_SECRET, OWNER, TRIGGERS as trg, BOT_NAME, anibot
 from ..utils.data_parser import (
