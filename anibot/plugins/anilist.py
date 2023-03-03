@@ -84,9 +84,9 @@ async def zoro_cmd(client: Client, message: Message, mdata: dict):
         return await k.delete()
     buttons = get_btns("ANIME", result=result, user=user, auth=auth)
     if await (SFW_GRPS.find_one({"id": gid})) and result[2].pop()=="True":
-        await client.send_photo(gid, no_pic[random.randint(0, 4)], caption="This anime is marked 18+ and not allowed in this group")
+        await message.reply_photo(no_pic[random.randint(0, 4)], caption="This anime is marked 18+ and not allowed in this group")
         return
-    animexx = await client.send_photo(gid, title_img, caption=finals_, 
+    animexx = await message.reply_photo(title_img, caption=finals_, 
                    reply_markup=InlineKeyboardMarkup(         
                     [
                         [
@@ -243,7 +243,7 @@ async def character_cmd(client: Client, message: Message, mdata: dict):
     img = result[0]
     cap_text = result[1][0]
     buttons = get_btns("CHARACTER", user=user, lsqry=qdb, lspage=1, result=result, auth=auth)
-    characterx = await client.send_photo(gid, img, caption=cap_text, reply_markup=buttons)
+    characterx = await message.reply_photo(img, caption=cap_text, reply_markup=buttons)
     await asyncio.sleep(180)
     return await characterx.delete()
 
@@ -278,7 +278,7 @@ async def anime_cmd(client: Client, message: Message, mdata: dict):
         buttons = get_btns("ANIME", lsqry=qdb, lspage=1, result=result, user=user, auth=auth, sfw="True")
         await client.send_photo(gid, no_pic[random.randint(0, 4)], caption="This anime is marked 18+ and not allowed in this group", reply_markup=buttons)
         return
-    anilistx = await client.send_photo(gid, pic, caption=msg, reply_markup=buttons)
+    anilistx = await message.reply_photo(pic, caption=msg, reply_markup=buttons)
     if pic not in PIC_LS:
         PIC_LS.append(pic)
         await asyncio.sleep(180)
@@ -314,7 +314,7 @@ async def flex_cmd(client: Client, message: Message, mdata: dict):
         await asyncio.sleep(5)
         return await k.delete()
     pic, msg, buttons = result
-    await client.send_photo(gid, pic, caption=msg, reply_markup=buttons)
+    await message.reply_photo(pic, caption=msg, reply_markup=buttons)
 
 
 @anibot.on_message(filters.command(["top", f"top{BOT_NAME}"], prefixes=trg))
@@ -337,7 +337,7 @@ async def top_tags_cmd(client: Client, message: Message, mdata: dict):
     if await (SFW_GRPS.find_one({"id": gid})) and str(result[0][1])=="True":
         return await message.reply_text('No nsfw stuff allowed in this group!!!')
     msg, buttons = result
-    topx = await client.send_message(gid, msg[0], reply_markup=buttons if buttons!='' else None)
+    topx = await message.reply_text(msg[0], reply_markup=buttons if buttons!='' else None)
     await asyncio.sleep(180)
     return await topx.delete()
 
@@ -372,7 +372,7 @@ async def airing_cmd(client: Client, message: Message, mdata: dict):
         btn = get_btns("AIRING", user=user, result=result, auth=auth, lsqry=qdb, lspage=1, sfw="True")
         await client.send_photo(gid, no_pic[random.randint(0, 4)], caption="This anime is marked 18+ and not allowed in this group", reply_markup=btn)
         return
-    airingx = await client.send_message(gid, text=out, reply_markup=btn)
+    airingx = await message.reply_text(text=out, reply_markup=btn)
     update = True
     for i in PIC_LS:
         if coverImg in i:
@@ -390,7 +390,7 @@ async def get_schuled(client: anibot, message: Message, mdata: dict):
     find_gc = await DC.find_one({'_id': gid})
     if find_gc is not None and 'schedule' in find_gc['cmd_list'].split():
         return
-    x = await client.send_message(gid, "<code>Fetching Scheduled Anime</code>")
+    x = await message.reply_text( "<code>Fetching Scheduled Anime</code>")
     user = mdata['from_user']['id']
     msg = await get_scheduled()
     buttons = get_btns("SCHEDULED", result=[0], user=user)
@@ -526,7 +526,7 @@ async def activity_cmd(client: Client, message: Message, mdata: dict):
     result = await get_user_activity(int(query), user=int(user))
     pic, msg, kek = result
     btns = InlineKeyboardMarkup([[InlineKeyboardButton("Profile", url=f"https://anilist.co/user/{query}")]])
-    await client.send_photo(gid, pic, caption=msg, reply_markup=btns)
+    await message.reply_photo(pic, caption=msg, reply_markup=btns)
 
 
 @anibot.on_message(filters.command(["favourites", f"favourites{BOT_NAME}"], prefixes=trg))
@@ -591,7 +591,7 @@ async def browse_cmd(client: Client, message: Message, mdata: dict):
         InlineKeyboardButton(up, callback_data=f'browse_{up.lower()}_{user}'),
     ]]
     msg = await browse_('trending')
-    browsex = await client.send_message(gid, msg, reply_markup=InlineKeyboardMarkup(btns))
+    browsex = await message.reply_text(msg, reply_markup=InlineKeyboardMarkup(btns))
     await asyncio.sleep(180)
     return await browsex.delete()
 
