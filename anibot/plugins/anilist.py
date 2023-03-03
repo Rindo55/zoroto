@@ -188,7 +188,7 @@ async def mangareader_cmd(client: Client, message: Message, mdata: dict):
     buttons = get_btns("MANGA", lsqry=qdb, lspage=1, user=user, result=result, auth=auth)
     if await (SFW_GRPS.find_one({"id": gid})) and result[2].pop()=="True":
         buttons = get_btns("MANGA", lsqry=qdb, lspage=1, user=user, result=result, auth=auth, sfw="True")
-        await message.reply_photo(gid, no_pic[random.randint(0, 4)], caption="This manga is marked 18+ and not allowed in this group", reply_markup=buttons)
+        await message.reply_photo(no_pic[random.randint(0, 4)], caption="This manga is marked 18+ and not allowed in this group", reply_markup=buttons)
         return
     mangar = await message.reply_photo(gid, pic, caption=finals_,
                    reply_markup=InlineKeyboardMarkup(         
