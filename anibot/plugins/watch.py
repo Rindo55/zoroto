@@ -32,7 +32,7 @@ async def get_watch_order(client: anibot, message: Message, mdata: dict):
         return
     for i in data:
         buttons.append([InlineKeyboardButton(str(i[1]), callback_data=f"watch_{i[0]}_{x[1]}_0_{user}")])
-    await client.send_message(gid, msg, reply_markup=InlineKeyboardMarkup(buttons))
+    await await message.reply_text(msg, reply_markup=InlineKeyboardMarkup(buttons))
 
 
 @anibot.on_callback_query(filters.regex(pattern=r"watch_(.*)"))
