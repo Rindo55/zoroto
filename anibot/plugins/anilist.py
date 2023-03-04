@@ -100,8 +100,6 @@ async def zoro_cmd(client: Client, message: Message, mdata: dict):
                 )
     if title_img not in PIC_LS:
         PIC_LS.append(title_img)
-    await asyncio.sleep(180)
-    return await animexx.delete()
 @anibot.on_message(filters.command(["manga", f"manga{BOT_NAME}"], prefixes=trg))
 @control_user
 async def manga_cmd(client: Client, message: Message, mdata: dict):
@@ -144,8 +142,6 @@ async def manga_cmd(client: Client, message: Message, mdata: dict):
     mangax = await message.reply_photo(pic, caption=finals_, reply_markup=buttons)
     if pic not in PIC_LS:
         PIC_LS.append(pic)
-    await asyncio.sleep(180)
-    return await mangax.delete()
 
 @anibot.on_message(filters.command(["mangareader", f"mangareader{BOT_NAME}"], prefixes=trg))
 @control_user
@@ -244,8 +240,6 @@ async def character_cmd(client: Client, message: Message, mdata: dict):
     cap_text = result[1][0]
     buttons = get_btns("CHARACTER", user=user, lsqry=qdb, lspage=1, result=result, auth=auth)
     characterx = await message.reply_photo(img, caption=cap_text, reply_markup=buttons)
-    await asyncio.sleep(180)
-    return await characterx.delete()
 
 @anibot.on_message(filters.command(["anime", f"anilist{BOT_NAME}"], prefixes=trg))
 @control_user
@@ -281,8 +275,7 @@ async def anime_cmd(client: Client, message: Message, mdata: dict):
     anilistx = await message.reply_photo(pic, caption=msg, reply_markup=buttons)
     if pic not in PIC_LS:
         PIC_LS.append(pic)
-        await asyncio.sleep(180)
-        return await anilistx.delete()
+ 
     
 @anibot.on_message(filters.command(["flex", f"flex{BOT_NAME}", "user", f"user{BOT_NAME}"], prefixes=trg))
 @control_user
@@ -338,8 +331,6 @@ async def top_tags_cmd(client: Client, message: Message, mdata: dict):
         return await message.reply_text('No nsfw stuff allowed in this group!!!')
     msg, buttons = result
     topx = await message.reply_text(msg[0], reply_markup=buttons if buttons!='' else None)
-    await asyncio.sleep(180)
-    return await topx.delete()
 
 @anibot.on_message(filters.command(["airing", f"airing{BOT_NAME}"], prefixes=trg))
 @control_user
@@ -380,8 +371,7 @@ async def airing_cmd(client: Client, message: Message, mdata: dict):
             break
     if update:
         PIC_LS.append(coverImg)
-    await asyncio.sleep(180)
-    return await airingx.delete()
+
 @anibot.on_message(filters.command(["schedule", f"schedule{BOT_NAME}"], prefixes=trg))
 @control_user
 async def get_schuled(client: anibot, message: Message, mdata: dict):
@@ -403,8 +393,6 @@ async def ns_(client: anibot, cq: CallbackQuery, cdata: dict):
     msg = await get_scheduled(int(day))
     buttons = get_btns("SCHEDULED", result=[int(day)], user=user)
     schedulex = await cq.edit_message_text(msg, reply_markup=buttons)
-    await asyncio.sleep(180)
-    return await schedulex.delete()
 
 @anibot.on_message(filters.command(["auth", f"auth{BOT_NAME}"], prefixes=trg))
 @control_user
@@ -471,8 +459,6 @@ async def sfw_cmd(client: Client, message: Message, mdata: dict):
                 [InlineKeyboardButton(text="Change UI", callback_data=f"cui_call_{cid}")]
             ])
         )
-        await asyncio.sleep(180)
-        return await text.delete()
 
 @anibot.on_message(filters.private & filters.command("code", prefixes=trg))
 @control_user
