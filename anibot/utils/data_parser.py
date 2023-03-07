@@ -1070,6 +1070,7 @@ async def get_anime(vars_, auth: bool = False, user: int = None, cid: int = None
         tagsx = tagsx.replace("#Age Regression", "#Age_Regression")
         tagsx = tagsx.replace("#Human Pet", "#Human_Pet")
         tagsx = tagsx.replace("#Achronoligical Order", "#Achronoligical_Order")
+	tagsx = tagsx.replace("#Tanned Skin", "#Tanned_Skin"")
     
     bot = BOT_NAME.replace("@", "")
     gnrs = ""
