@@ -1307,7 +1307,7 @@ async def get_anilist(qdb, page, auth: bool = False, user: int = None, cid: int 
         th = pos_no(str(eps))
         air_on += f" ({eps}{th} ep)"
     if air_on  is None:
-        eps_ = f"` | `{episodes} ep/s" if episodes is not None else ""
+        eps_ = f"` | `{episodes} eps" if episodes is not None else ""
         status_air = f"{bl}**{text[6]}:** {status}{eps_}"
     else:
         status_air = f"{bl}**{text[6]}:** {status}\n{bl}**{text[11]}:** {air_on}"
