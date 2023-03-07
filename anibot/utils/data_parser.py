@@ -1009,7 +1009,7 @@ async def get_anime(vars_, auth: bool = False, user: int = None, cid: int = None
     tags = []
     for i in data['tags']:
         tags.append(i["name"])
-        tagsx = f"\n{bl}**{text[8]}:** {', #'.join(tags)}"
+        tagsx = f"\n{bl}**{text[8]}:** #{', #'.join(tags)}"
         tagsx = tagsx.replace("#Age Gap", "#Age_Gap")
         tagsx = tagsx.replace("#Anti-hero", "#Antihero")
         tagsx = tagsx.replace("#Artificial Intelligence", "#Artificial_Intelligence")
@@ -1197,7 +1197,7 @@ async def get_anilist(qdb, page, auth: bool = False, user: int = None, cid: int 
     tags = []
     for i in data['tags']:
         tags.append(i["name"])
-        tagsx = f"\n{bl}**{text[8]}:** {', #'.join(tags)}" 
+        tagsx = f"\n{bl}**{text[8]}:** #{', #'.join(tags)}" 
         tagsx = tagsx.replace("#Age Gap", "#Age_Gap")
         tagsx = tagsx.replace("#Anti-Hero", "#Antihero")
         tagsx = tagsx.replace("#Artificial Intelligence", "#Artificial_Intelligence")
