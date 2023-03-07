@@ -42,64 +42,7 @@ no_pic = [
 ]
 
 
-@anibot.on_message(filters.command(["zoro", f"anime{BOT_NAME}"], prefixes=trg))
-@control_user
-async def zoro_cmd(client: Client, message: Message, mdata: dict):
-    """Search Anime Info"""
-    text = mdata['text'].split(" ", 1)
-    args = message.text.split(" ", 1)
-    gid = mdata['chat']['id']
-    gidtype = mdata['chat']['type']
-    user = mdata['from_user']['id']
-    if gidtype in ["supergroup", "group"] and not await (GROUPS.find_one({"id": gid})):
-        try:
-            gidtitle = mdata['chat']['username']
-        except KeyError:
-            gidtitle = mdata['chat']['title']
-        await GROUPS.insert_one({"id": gid, "grp": gidtitle})
-        await clog("ANIBOT", f"Bot added to a new group\n\n{gidtitle}\nID: `{gid}`", "NEW_GROUP")
-    find_gc = await DC.find_one({'_id': gid})
-    if find_gc is not None and 'zoro' in find_gc['cmd_list'].split():
-        return
-    if len(text)==1:
-        k = await message.reply_text("Please give a query to search about\nexample: `/zoro One Piece`")
-        await asyncio.sleep(5)
-        return await k.delete()
-    query = text[1]
-    zoro_query = args[1]
-    zoro_query = zoro_query.replace(" ","%20")
-    zoro_url = f"https://zoro.to/search?keyword={zoro_query}"
-    auth = False
-    vars_ = {"search": query}
-    if query.isdigit():
-        vars_ = {"id": int(query)}
-    if (await AUTH_USERS.find_one({"id": user})):
-        auth = True
-    result = await get_anime(vars_, user=user, auth=auth, cid=gid if gid!=user else None)
-    if len(result) != 1:
-        title_img, finals_ = result[0], result[1]
-    else:
-        k = await message.reply_text(result[0])
-        await asyncio.sleep(5)
-        return await k.delete()
-    buttons = get_btns("ANIME", result=result, user=user, auth=auth)
-    if await (SFW_GRPS.find_one({"id": gid})) and result[2].pop()=="True":
-        await message.reply_photo(no_pic[random.randint(0, 4)], caption="This anime is marked 18+ and not allowed in this group")
-        return
-    animexx = await message.reply_photo(title_img, caption=finals_, 
-                   reply_markup=InlineKeyboardMarkup(         
-                    [
-                        [
-                            InlineKeyboardButton(
-                                text="📺 Watch Online",
-                                url=zoro_url,
-                            ),
-                        ],
-                      ],
-                    ),
-                )
-    if title_img not in PIC_LS:
-        PIC_LS.append(title_img)
+
 @anibot.on_message(filters.command(["manga", f"manga{BOT_NAME}"], prefixes=trg))
 @control_user
 async def manga_cmd(client: Client, message: Message, mdata: dict):
