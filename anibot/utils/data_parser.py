@@ -1181,6 +1181,7 @@ async def get_anilist(qdb, page, auth: bool = False, user: int = None, cid: int 
     bl, cs = await uidata(cid)
     text = await get_ui_text(cs)
     psrc, ptype = text[0], text[1]
+    genres = data.get("genres")
     gnrs = ""
 
     for i in genres:
