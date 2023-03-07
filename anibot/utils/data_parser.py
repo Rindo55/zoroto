@@ -1179,13 +1179,18 @@ async def get_anilist(qdb, page, auth: bool = False, user: int = None, cid: int 
     adult = data.get("isAdult")
     trailer_link = "N/A"
     isfav = data.get("isFavourite")
-    gnrs = ", ".join(data['genres'])
-    gnrs_ = ""
     bl, cs = await uidata(cid)
     text = await get_ui_text(cs)
     psrc, ptype = text[0], text[1]
-    if len(gnrs)!=0:
-        gnrs_ = f"\n{bl}**{text[7]}:** {gnrs}"
+    gnrs = ""
+
+    for i in genres:
+      gnrs += i + ", #"
+    gnrs = gnrs[:-3]
+    gnrs = gnrs.replace("#Slice of Life", "#Slice_of_Life")
+    gnrs = gnrs.replace("#Mahou Shoujo", "#Mahou_Shoujo")    
+    gnrs = gnrs.replace("#Sci-Fi", "#SciFi")
+    gnrs_ = f"\n{bl}**{text[7]}:** #{gnrs}"
     fav = ", in Favourites" if isfav is True else ""
     score = data['averageScore']
     avscd = f"\n{bl}**{text[2]}:** 🌟{score}" if score is not None else ""
