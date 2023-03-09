@@ -1070,8 +1070,8 @@ async def get_anime(vars_, auth: bool = False, user: int = None, cid: int = None
         tagsx = tagsx.replace("#Age Regression", "#Age_Regression")
         tagsx = tagsx.replace("#Human Pet", "#Human_Pet")
         tagsx = tagsx.replace("#Achronoligical Order", "#Achronoligical_Order")
-	
-    
+        tagsx = tagsx.replace("#Body Swapping", "#Body_Swapping")
+
     bot = BOT_NAME.replace("@", "")
     gnrs = ""
 
@@ -1218,7 +1218,7 @@ async def get_anilist(qdb, page, auth: bool = False, user: int = None, cid: int 
         tagsx = tagsx.replace("#Female Protagonist", "#Female_Protagonist")
         tagsx = tagsx.replace("#Full CGI", "#Full_CGI")
         tagsx = tagsx.replace("#Full Color", "#Full_Color")
-        tagsx = tagsx.replace("#Found_Family", "#Found_Family")
+        tagsx = tagsx.replace("#Found Family", "#Found_Family")
         tagsx = tagsx.replace("#Gender Bending", "#Gender_Bending")
         tagsx = tagsx.replace("#Ice Skating", "#Ice_Skating")
         tagsx = tagsx.replace("#Language Barrier", "#Language_Barrier")
@@ -1260,6 +1260,8 @@ async def get_anilist(qdb, page, auth: bool = False, user: int = None, cid: int 
         tagsx = tagsx.replace("#Human Pet", "#Human_Pet")
         tagsx = tagsx.replace("#Achronoligical Order", "#Achronoligical_Order")
         tagsx = tagsx.replace("#Tanned Skin", "#Tanned_Skin")
+        tagsx = tagsx.replace("#Body Swapping", "#Body_Swapping")
+
     in_ls = False
     in_ls_id = ""
     user_data = ""
