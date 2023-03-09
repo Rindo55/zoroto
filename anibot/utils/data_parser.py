@@ -1071,6 +1071,8 @@ async def get_anime(vars_, auth: bool = False, user: int = None, cid: int = None
         tagsx = tagsx.replace("#Human Pet", "#Human_Pet")
         tagsx = tagsx.replace("#Achronoligical Order", "#Achronoligical_Order")
         tagsx = tagsx.replace("#Body Swapping", "#Body_Swapping")
+        tagsx = tagsx.replace("#Large Breasts", "Large_Breasts")
+        tagsx = tagsx.replace("#Classic Literature", "#Classic_Literature")
 
     bot = BOT_NAME.replace("@", "")
     gnrs = ""
@@ -1261,6 +1263,8 @@ async def get_anilist(qdb, page, auth: bool = False, user: int = None, cid: int 
         tagsx = tagsx.replace("#Achronoligical Order", "#Achronoligical_Order")
         tagsx = tagsx.replace("#Tanned Skin", "#Tanned_Skin")
         tagsx = tagsx.replace("#Body Swapping", "#Body_Swapping")
+        tagsx = tagsx.replace("#Large Breasts", "Large_Breasts")
+        tagsx = tagsx.replace("#Classic Literature", "#Classic_Literature")
 
     in_ls = False
     in_ls_id = ""
