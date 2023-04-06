@@ -112,24 +112,22 @@ async def zoro_cmd(client: Client, message: Message, mdata: dict):
     zoro_query = args[1]
     zoro_query = zoro_query.replace(" ","%20")
     zoro_url = f"https://zoro.to/search?keyword={zoro_query}"
+    qdb = rand_key()
+    ANIME_DB[qdb] = query
     auth = False
-    vars_ = {"search": query}
-    if query.isdigit():
-        vars_ = {"id": int(query)}
     if (await AUTH_USERS.find_one({"id": user})):
         auth = True
-    result = await get_anime(vars_, user=user, auth=auth, cid=gid if gid!=user else None)
-    if len(result) != 1:
-        title_img, finals_ = result[0], result[1]
-    else:
+    result = await get_anilist(qdb, 1, auth=auth, user=user, cid=gid if gid!=user else None)
+    if len(result) == 1:
         k = await message.reply_text(result[0])
         await asyncio.sleep(5)
         return await k.delete()
+    pic, msg = result[0], result[1][0]
     buttons = get_btns("ANIME", result=result, user=user, auth=auth)
     if await (SFW_GRPS.find_one({"id": gid})) and result[2].pop()=="True":
         await message.reply_photo(no_pic[random.randint(0, 4)], caption="This anime is marked 18+ and not allowed in this group")
         return
-    animexx = await message.reply_photo(title_img, caption=finals_, 
+    animexx = await message.reply_photo(pic, caption=msg, 
                    reply_markup=InlineKeyboardMarkup(         
                     [
                         [
@@ -141,8 +139,8 @@ async def zoro_cmd(client: Client, message: Message, mdata: dict):
                       ],
                     ),
                 )
-    if title_img not in PIC_LS:
-        PIC_LS.append(title_img)
+    if pic not in PIC_LS:
+        PIC_LS.append(pic)
 @anibot.on_message(filters.command(["mangareader", f"mangareader{BOT_NAME}"], prefixes=trg))
 @control_user
 async def mangareader_cmd(client: Client, message: Message, mdata: dict):
