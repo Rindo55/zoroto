@@ -235,7 +235,7 @@ async def db_cleanup(client: anibot, message: Message, mdata: dict):
         await x.reply_text(entries)
     await x.edit_text(msg)
 
-zoro_img = "https://i.ibb.co/thzrQm1/photo-2022-10-28-00-00-26.jpg"
+zoro_img = "https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/zoro-bounty-wanted-poster-one-piece-roronoa-zoro.jpg"
 @anibot.on_message(filters.command(['start', f'start{BOT_NAME}'], prefixes=trg))
 @control_user
 async def start_(client: anibot, message: Message, mdata: dict):
@@ -299,7 +299,7 @@ async def start_(client: anibot, message: Message, mdata: dict):
 __I can help you get info on anime, manga, characters, airing, schedules, Watch Order of Anime, filler list etc.__
 **For more info send /help.**
 
-Currently serving at [Zoro Community](https://t.me/joinchat/Cd6xjR_S7wpkM2Rl).""",
+Currently serving at [Zoro Community](https://t.me/+6pPzElOP7rc4ZGI1).""",
             reply_markup=InlineKeyboardMarkup(
                     [
                         [
@@ -321,7 +321,7 @@ Currently serving at [Zoro Community](https://t.me/joinchat/Cd6xjR_S7wpkM2Rl).""
                         [
                             InlineKeyboardButton(
                                 text="Community",
-                                url="https://t.me/joinchat/Cd6xjR_S7wpkM2Rl",
+                                url="https://t.me/+6pPzElOP7rc4ZGI1",
                             ),
                             InlineKeyboardButton(
                                 text="Announcements",
