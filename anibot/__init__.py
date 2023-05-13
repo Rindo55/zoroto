@@ -12,7 +12,7 @@ ANILIST_SECRET = "WT89yte1YTdmvI57OmkqFuiQ4us4QSCaBczbhwwD"
 ANILIST_REDIRECT_URL = "https://anilist.co/api/v2/oauth/pin"
 API_ID = 3845818
 LOG_CHANNEL_ID = -1001763341757
-OWNER = 1443454117
+OWNER = int(1443454117)
 
 DOWN_PATH = "anibot/downloads/"
 HELP_DICT = dict()
