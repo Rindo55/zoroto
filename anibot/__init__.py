@@ -2,17 +2,17 @@ import os
 from pyrogram import Client
 from aiohttp import ClientSession
 
-TRIGGERS = os.environ.get("TRIGGERS", "/ ! .").split()
-API_HASH = os.environ.get("API_HASH")
-BOT_TOKEN = os.environ.get("BOT_TOKEN")
-BOT_NAME = os.environ.get("BOT_NAME")
-DB_URL = os.environ.get("DATABASE_URL")
-ANILIST_CLIENT = os.environ.get("ANILIST_CLIENT")
-ANILIST_SECRET = os.environ.get("ANILIST_SECRET")
-ANILIST_REDIRECT_URL = os.environ.get("ANILIST_REDIRECT_URL", "https://anilist.co/api/v2/oauth/pin")
-API_ID = int(os.environ.get("API_ID"))
-LOG_CHANNEL_ID = int(os.environ.get("LOG_CHANNEL_ID"))
-OWNER = list(filter(lambda x: x, map(int, os.environ.get("OWNER_ID", "1005170481 804248372 1993696756").split())))  ## sudos can be included
+TRIGGERS = ("/ ! .").split()
+API_HASH = "95937bcf6bc0938f263fc7ad96959c6d"
+BOT_TOKEN = "5787191452:AAGPcjesbDih65vqH5rUFbrxZ96yHemISi4"
+BOT_NAME = "@ZoroLostBot"
+DB_URL = "mongodb+srv://zoro:lost@cluster0.4zwdyde.mongodb.net/?retryWrites=true&w=majority"
+ANILIST_CLIENT = "9811"
+ANILIST_SECRET = "WT89yte1YTdmvI57OmkqFuiQ4us4QSCaBczbhwwD"
+ANILIST_REDIRECT_URL = "https://anilist.co/api/v2/oauth/pin"
+API_ID = 3845818
+LOG_CHANNEL_ID = -1001763341757
+OWNER = 1443454117
 
 DOWN_PATH = "anibot/downloads/"
 HELP_DICT = dict()
