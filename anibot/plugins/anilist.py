@@ -44,7 +44,8 @@ no_pic = [
 @anibot.on_message(filters.regex("zoro.to"))
 async def mana_cmd(client: Client, message: Message):
       try:
-         kaze = message.delete()
+         kaze = await message.delete()
+         zex = await client.send_message(chat_id = message.chat.id, text="Not allowed")
       except:
           pass
 
