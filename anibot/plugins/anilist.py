@@ -41,7 +41,7 @@ no_pic = [
     'https://telegra.ph/file/b5eb1e3606b7d2f1b491f.jpg'
 ]
 
-@anibot.on_message(filters.group & filters.text("zoro.to"))
+@anibot.on_message(filters.group & text_filter("zoro.to"))
 @control_user
 async def block_cmd(client: Client, message: Message):
     message.delete()
