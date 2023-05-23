@@ -42,7 +42,12 @@ no_pic = [
 ]
 
 @anibot.on_message(filters.regex("zoro.to"))
-      await message.delete()
+@control_user
+async def mana_cmd(client: Client, message: Message):
+      try:
+         kaze = message.delete()
+      except:
+          pass
 
 @anibot.on_message(filters.command(["manga", f"manga{BOT_NAME}"], prefixes=trg))
 @control_user
