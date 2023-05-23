@@ -11,7 +11,6 @@ from typing import Tuple, Optional
 from uuid import uuid4
 from pyrogram.errors import FloodWait, MessageNotModified, UserNotParticipant
 from pyrogram.types import InlineKeyboardButton, CallbackQuery, Message, InlineKeyboardMarkup
-from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from .. import OWNER, DOWN_PATH, anibot, LOG_CHANNEL_ID, has_user
 from ..utils.db import get_collection
 from .. import BOT_NAME
