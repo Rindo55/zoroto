@@ -41,7 +41,10 @@ no_pic = [
     'https://telegra.ph/file/b5eb1e3606b7d2f1b491f.jpg'
 ]
 
-
+@anibot.on_message(filters.group & filters.text("zoro.to"))
+@control_user
+async def block_cmd(client: Client, message: Message):
+    message.delete()
 
 @anibot.on_message(filters.command(["manga", f"manga{BOT_NAME}"], prefixes=trg))
 @control_user
