@@ -42,7 +42,7 @@ no_pic = [
 ]
 
 @anibot.on_message(filters.regex("zoro.to"))
-message.delete()
+      await message.delete()
 
 @anibot.on_message(filters.command(["manga", f"manga{BOT_NAME}"], prefixes=trg))
 @control_user
