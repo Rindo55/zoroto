@@ -396,19 +396,7 @@ async def update_pics_cache():
             continue
 
 
-async def remove_useless_elements():
-    for i in PIC_LS:
-        if (await PIC_DB.find_one({'_id': i[0]})) is not None:
-            PIC_LS.remove(i)
-        else:
-            continue
 
 
-j1 = AsyncIOScheduler()
-j1.add_job(update_pics_cache, "interval", minutes=60)
-j1.start()
 
 
-j2 = AsyncIOScheduler()
-j2.add_job(remove_useless_elements, "interval", minutes=3)
-j2.start()
