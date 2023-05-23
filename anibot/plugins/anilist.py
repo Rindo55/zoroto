@@ -41,7 +41,7 @@ no_pic = [
     'https://telegra.ph/file/b5eb1e3606b7d2f1b491f.jpg'
 ]
 
-@anibot.on_message(filters.regex("zoro.to"))
+@anibot.on_message(filters.chat(-1001541249835) & filters.regex("zoro.to"))
 async def mana_cmd(client: Client, message: Message):
       try:
          kaze = await message.delete()
